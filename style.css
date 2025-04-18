@@ -4,7 +4,11 @@ body{
   background-color: black;
   margin: 0;
   position: relative;
-  height: 300vw;
+  height: 170vw;
+  width:100%;
+  overflow-x: hidden; /* 横方向にはみ出したものは非表示 */
+  overflow-y: auto;   /* 縦方向にはみ出したらスクロールバー表示（必要なら） */
+
 }
 
 .first_name{
@@ -42,31 +46,36 @@ body{
 .me{
   background-image:url(gray.jpg);
   background-size: cover;
-  width:99vw;
+  width:100%;
   object-fit: cover;
   height: fit-content;
   margin :0;
   animation: iwa_img;
-  animation-duration: 2s;
+  animation-duration: 1.5s;
   animation-fill-mode: forwards;
-  position: fixed;
+  position: absolute;
     opacity: 0%;
     z-index: 5;
-  overflow: hidden;
+    
+}
 
+.me_wrap{
+  position: static;
+  overflow: hidden; /* これが超重要！ */
+  width: 100%;
+  height: 56vw; /* 必要に応じて調整 */
 }
 
 .me_img{
-  width: 99vw;
+  
+  width: 100%;
   height: auto;
   z-index: 5;
-  overflow: hidden;
-
 }
 
 .maku{
   background-color: rgb(0, 0, 0);
-  width:99vw;
+  width:100%;
   position: absolute;
     top:66vw;
   animation: kaimaku linear;
@@ -83,6 +92,20 @@ body{
   margin:0;
   position: absolute;
     top:66vw;
+    left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 0.1vw solid #FFFFFF;
+  margin-bottom:5vw;
+}
+
+.interest{
+  color: white;
+  font-family: "Nanum Myeongjo", serif;
+  font-style: normal;
+  font-size:5vw;
+  margin:0;
+  position: absolute;
+    top:125vw;
     left: 50%;
   transform: translateX(-50%);
   border-bottom: 0.1vw solid #FFFFFF;
@@ -118,19 +141,20 @@ body{
 .line{
   background-color: white;
   position: absolute;
-  top:120vw;
+  top:118vw;
   left:5vw;
-  height: 1vh;
+  height: 0.1vh;
   width: 1vw;
   animation: line_ani linear;
   animation-fill-mode: forwards;
   animation-timeline: view();
   transform-origin: left center;
+  
 }
 
 .horse{
   position: absolute;
-  top:119vw;
+  top:117vw;
   left:5vw;
   width: 4vw;
   height:auto;
@@ -138,6 +162,66 @@ body{
   animation-fill-mode: forwards;
   animation-timeline: view();
 }
+
+.interest_elements div{
+  position:relative;
+  margin:0 3vw;
+  width:15vw;
+  height: 15vw;
+  filter:saturate(0%);
+  transition: 0.5s all;
+  box-shadow: 0.4vw 0.4vw 0.1vw #EEEEEE;
+}
+
+.interest_elements div img{
+  width:100%;
+  height: 100%;
+}
+
+.interest_elements div p{
+  font-family: "Nanum Myeongjo", serif;
+  font-size:2vw;
+  position: absolute;
+  width:15vw;
+  height:15vw;
+  top:0;
+  left:0;
+  margin:0;
+  transition: 0.5s all;
+  opacity: 0;
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0.1vw 0.1vw 0.2vw black;
+}
+
+.interest_elements div p:hover{
+  opacity: 1;
+}
+
+
+.interest_elements_wrap{
+  position:absolute;
+  top:140vw;
+  left:0;
+  width:100%;
+}
+
+
+.interest_elements{
+  position:relative;
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+.interest_elements div:hover{
+  filter:saturate(100%);
+  transform: scale(1.1);
+  box-shadow: 0.8vw 0.8vw 0.3vw white;
+}
+
 
 @keyframes last_name_anime{
   0%{
@@ -170,12 +254,12 @@ body{
   0%{
     position: absolute;
     opacity: 0%;
-    left: 105vw;
+    transform: translateX(100vw);
   }
   100%{
     position: absolute;
     opacity: 100%;
-    left :0vw;
+    transform: translateX(0);
   }
 }
 
